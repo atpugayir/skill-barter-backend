@@ -1,7 +1,6 @@
 flask
 flask-cors
-openai
 python-dotenv
-numpy
+openai
 scikit-learn
-gunicorn
+numpy

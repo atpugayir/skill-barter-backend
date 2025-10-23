@@ -9,13 +9,12 @@ from dotenv import load_dotenv
 load_dotenv()
 
 app = Flask(__name__)
-CORS(app)  # Enable CORS for all routes
+CORS(app)
 
 @app.route("/")
 def home():
     return "Backend is running!"
 
-# Chatbot API
 @app.route("/chatbot", methods=["POST"])
 def chatbot_api():
     data = request.json
@@ -23,7 +22,6 @@ def chatbot_api():
     response = get_chat_response(message)
     return jsonify({"response": response})
 
-# Recommender API
 @app.route("/recommend", methods=["POST"])
 def recommender_api():
     data = request.json
@@ -32,5 +30,5 @@ def recommender_api():
     return jsonify({"recommendations": recommendations})
 
 if __name__ == "__main__":
-    port = int(os.getenv("PORT", 5000))
-    app.run(host="0.0.0.0", port=port, debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
